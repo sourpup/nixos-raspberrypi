@@ -268,14 +268,18 @@
               ...
             }:
             {
+              imports = [
+                ./wifi-config.nix
+              ];
+              # nixpkgs.buildPlatform = { system="x86_64-linux"; };
+              nixpkgs.hostPlatform = "aarch64-linux";
+            
 
               users.users.nixos.openssh.authorizedKeys.keys = [
-                # YOUR SSH PUB KEY HERE #
-
+                  # YOUR SSH PUB KEY HERE #
               ];
               users.users.root.openssh.authorizedKeys.keys = [
-                # YOUR SSH PUB KEY HERE #
-
+                  # YOUR SSH PUB KEY HERE #
               ];
 
               environment.systemPackages = with pkgs; [
@@ -291,7 +295,7 @@
                   cfg.bootloader
                   config.boot.kernelPackages.kernel.version
                 ];
-            }
+              }
           );
 
         in
